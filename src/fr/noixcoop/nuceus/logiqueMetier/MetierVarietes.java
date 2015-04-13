@@ -3,10 +3,12 @@ package fr.noixcoop.nuceus.logiqueMetier;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.noixcoop.nuceus.dao.DaoVarietes;
 import fr.noixcoop.nuceus.metier.Variete;
 
-public class MetierVarietes {
+public class MetierVarietes implements IMetierVarietes{
 	private List<Variete> varietes = new ArrayList<Variete>() ;
+	private DaoVarietes daoVariete = new DaoVarietes();
 
 	public MetierVarietes() {
 		super();

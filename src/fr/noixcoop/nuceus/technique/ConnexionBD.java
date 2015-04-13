@@ -3,7 +3,7 @@ import java.sql.* ;
 import com.mysql.jdbc.Connection;
 
 public class ConnexionBD {
-	private static String dbURL ="jdbc:mysql://localhost:3306/noixcoop" , user ="root" , password ="azerty";
+	private static String dbURL ="jdbc:mysql://localhost:3306/noixcoop" , user ="noixcoop" , password ="noixcoop";
 	private static Connection connexion = null;
 	private ConnexionBD() {
 		try {

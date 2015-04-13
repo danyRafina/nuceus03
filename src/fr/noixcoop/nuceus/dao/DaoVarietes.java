@@ -7,12 +7,31 @@ import fr.noixcoop.nuceus.metier.Variete;
 import fr.noixcoop.nuceus.technique.ConnexionBD;
 
 public class DaoVarietes implements IDaoVarietes {
-	
-	public List<Variete> consulter(){
-		// Votre code ici
-		return null ;
+
+	public List<Variete> consulter() {
+		List<Variete> varietes = new ArrayList<Variete>();
+		Connection connexion = ConnexionBD.getConnexion() ;
+		try {
+			Statement requete = connexion.createStatement() ;
+			ResultSet resultat = requete.executeQuery("select * from VARIETE ;") ;
+			while(resultat.next()){
+				boolean aoc = false ;
+				if(resultat.getInt("aoc") == 1){
+					aoc = true ;
+				}
+				Variete variete =  new Variete(resultat.getString("libelle"),aoc) ;
+				varietes.add(variete);
+			}
+			resultat.close() ;
+			requete.close() ;
+		}
+		catch(Exception e){
+			System.out.println("Erreur dans DaoVarietes::consulter(String)...") ;
+		}
+
+		return varietes ;
 	}
-	
+
 	public Variete consulter(String libelle){
 		Variete variete = null ;
 		Connection connexion = ConnexionBD.getConnexion() ;
@@ -34,7 +53,7 @@ public class DaoVarietes implements IDaoVarietes {
 		}
 		return variete ;
 	}
-	
+
 	public boolean ajouter(Variete variete){
 		Connection connexion = ConnexionBD.getConnexion() ;
 		try {
@@ -46,11 +65,11 @@ public class DaoVarietes implements IDaoVarietes {
 			return false ;
 		}
 	}
-	
+
 	public boolean modifier(Variete variete){
 		Connection connexion = ConnexionBD.getConnexion() ;
 		try {
-			// Votre code ici
+
 			return true ;
 		}
 		catch(Exception e){
@@ -58,7 +77,7 @@ public class DaoVarietes implements IDaoVarietes {
 			return false ;
 		}
 	}
-	
+
 	public boolean supprimer(String libelle){
 		Connection connexion = ConnexionBD.getConnexion() ;
 		try {
@@ -70,10 +89,10 @@ public class DaoVarietes implements IDaoVarietes {
 			return false ;
 		}
 	}
-	
+
 	public boolean supprimer(Variete variete){
 		// Votre code ici
 		return false ;
 	}
-	
+
 }
