@@ -84,7 +84,7 @@ public class DaoVarietes implements IDaoVarietes {
 			if(variete.isAoc()){
 				aoc=1;
 			}
-			int resultat = requete.executeUpdate("UPDATE FROM VARIETE SET aoc = "+aoc+" where libelle = '"+variete.getLibelle()+"' ;");
+			int resultat = requete.executeUpdate("UPDATE VARIETE SET aoc = "+aoc+" where libelle = '"+variete.getLibelle()+"' ;");
 			if(resultat == 1){
 				return true ;
 			}
@@ -93,7 +93,7 @@ public class DaoVarietes implements IDaoVarietes {
 			}
 		}
 		catch(Exception e){
-			System.out.println("Erreur dans DaoVarietes::modifier(Commune)...") ;
+			System.out.println("Erreur dans DaoVarietes::modifier(variete)...") ;
 			return false ;
 		}
 	}

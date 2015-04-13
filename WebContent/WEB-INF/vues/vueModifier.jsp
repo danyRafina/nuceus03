@@ -8,29 +8,41 @@
 <link type="text/css" href="style/css/bootstrap.css" rel="stylesheet">
 <%
 	String libelle = (String) request.getAttribute("libelle");
-	String aoc = (String) request.getAttribute("aoc");
+	boolean aoc = ((Boolean) request.getAttribute("aoc")).booleanValue();
 %>
 </head>
 <body>
 	<nav class="navbar navbar-header navbar-fixed-top navbar-inverse">
-		<div class="navbar-brand black">Liste des variétés de Noix</div>
-		<a class="navbar-right" style="color:white;font:20px Arial bold; margin-top:11px;margin-right:23px!important"href="?action=visualiser">Retourner</a>
+		<div class="navbar-brand black">Modifier une variété</div>
+		<a class="navbar-right"
+			style="color: white; font: 20px Arial bold; margin-top: 11px; margin-right: 23px !important"
+			href="?action=visualiser">Retourner</a>
 	</nav>
 
-	<div class="container" style="margin-top:50px">
+	<div class="container" style="margin-top: 50px">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h1>Confirmation de l'ajout</h1>
-				<% if(libelle != null &&  aoc != null) { %>
-				<ul class="list-group-item">
-					<li>Libellé : <%=libelle%></li>
-					<li>AOC : <%=aoc%></li>
-					<li><a href="?action=visualiser">Visualiser</a></li>
-				
-				</ul>
-					<% } else { %>
-					<h2> Oups ! La variété n'a pas été ajoutée</h2>
-					<% } %>
+				<h1>Modification de la variété</h1>
+				<form class="form-group" method="GET">
+					<ul class="list-group-item" style="list-style-type: none">
+						<li> <h3> Libellé : <%=libelle%></h3></li>
+						<li> <h3> AOC : <%if (aoc) {%> 
+							<input type="checkbox" name="isAoc" checked="checked">
+							<% } else { %> 
+							<input type="checkbox" name="isAoc"> 
+							
+							<%}%>
+							</h3>
+							<input type="hidden" name="libelle" value="<%= libelle %>">
+							<input type="hidden" name="action" value="modifier">
+							
+						</li>
+						
+						<li><button type="submit">Valider</button>
+							<button type="button"
+								onClick="location.href='?action=visualiser'">Annuler</button></li>
+					</ul>
+				</form>
 			</div>
 		</div>
 	</div>

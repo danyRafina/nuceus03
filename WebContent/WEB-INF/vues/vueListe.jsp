@@ -57,7 +57,7 @@
 						</td>
 						<td>
 							<div class="glyphicon glyphicon-cog"
-								onClick="location.href='?action=Modifier&variete=<%=variete.getLibelle()%>'"></div>
+								onClick="location.href='?action=formulaireModifier&variete=<%=variete.getLibelle()%>'"></div>
 
 						</td>
 						<td>
