@@ -92,7 +92,7 @@ public class DaoVarietes implements IDaoVarietes {
 		Connection connexion = ConnexionBD.getConnexion() ;
 		try {
 			Statement requete = connexion.createStatement() ;
-			ResultSet resultat = requete.executeQuery("delete from VARIETE where libelle='" + libelle + "';") ;
+			ResultSet resultat = requete.executeQuery("DELETE FROM VARIETE where libelle ='" + libelle + "';") ;
 			return true ;
 		}
 		catch(Exception e){

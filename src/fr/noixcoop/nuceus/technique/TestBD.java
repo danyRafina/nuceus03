@@ -6,7 +6,7 @@ public class TestBD {
 	public static void main(String [] args){
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance() ;
-			Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/noixcoop?useUnicode=true&characterEncoding=UTF-8","root","azerty") ;
+			Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/noixcoop?useUnicode=true&characterEncoding=UTF-8","noixcoop","noixcoop") ;
 			Statement requete = connexion.createStatement() ;
 			ResultSet resultat = requete.executeQuery("select libelle,aoc from VARIETE ;") ;
 			resultat.last() ;
