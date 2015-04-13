@@ -26,7 +26,7 @@ public class DaoVarietes implements IDaoVarietes {
 			requete.close() ;
 		}
 		catch(Exception e){
-			System.out.println("Erreur dans DaoVarietes::consulter(String)...") ;
+			System.out.println("Erreur dans DaoVarietes::consulter()...") ;
 		}
 
 		return varietes ;
@@ -56,8 +56,13 @@ public class DaoVarietes implements IDaoVarietes {
 
 	public boolean ajouter(Variete variete){
 		Connection connexion = ConnexionBD.getConnexion() ;
+		int aoc = 0;
 		try {
-			// Votre code ici
+			Statement requete = connexion.createStatement() ;
+			if(variete.isAoc()){
+				aoc=1;
+			}
+			ResultSet resultat = requete.executeQuery("INSERT INTO VARIETE VALUES ('"+variete.getLibelle()+"',"+aoc+") ;");
 			return true ;
 		}
 		catch(Exception e){
@@ -68,8 +73,13 @@ public class DaoVarietes implements IDaoVarietes {
 
 	public boolean modifier(Variete variete){
 		Connection connexion = ConnexionBD.getConnexion() ;
+		int aoc = 0;
 		try {
-
+			Statement requete = connexion.createStatement() ;
+			if(variete.isAoc()){
+				aoc=1;
+			}
+			ResultSet resultat = requete.executeQuery("UPDATE FROM VARIETE SET aoc = "+aoc+" where libelle = '"+variete.getLibelle()+"' ;");
 			return true ;
 		}
 		catch(Exception e){
@@ -81,7 +91,8 @@ public class DaoVarietes implements IDaoVarietes {
 	public boolean supprimer(String libelle){
 		Connection connexion = ConnexionBD.getConnexion() ;
 		try {
-			// Votre code ici
+			Statement requete = connexion.createStatement() ;
+			ResultSet resultat = requete.executeQuery("delete from VARIETE where libelle='" + libelle + "';") ;
 			return true ;
 		}
 		catch(Exception e){
@@ -91,8 +102,7 @@ public class DaoVarietes implements IDaoVarietes {
 	}
 
 	public boolean supprimer(Variete variete){
-		// Votre code ici
-		return false ;
+		return this.supprimer(variete.getLibelle());
 	}
 
 }
